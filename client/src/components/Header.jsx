@@ -20,20 +20,22 @@ export default function Header() {
                     <Button className='hidden sm:inline ' gradientDuoTone='purpleToBlue' color='gray' pill>
                         <FaMoon  />
                     </Button>
-                    <Link to='/singin'>
+                    <Link to='/signin'>
                         <Button gradientDuoTone='purpleToBlue' outline>sign In</Button>
                     </Link>
                     <Navbar.Toggle />
                 </div>
-                <Navbar.Collapse>
+                {/* increase text size */}
+
+                                <Navbar.Collapse >
                     <Navbar.Link active={path==='/'}as={'div'}>
-                        <Link to='/' >Home</Link>
+                        <Link to='/' className='text-lg  ' >Home</Link>
                     </Navbar.Link>
                     <Navbar.Link active={path==='/about'} as={'div'}>
-                        <Link to='/about'>About</Link>
+                        <Link to='/about' className='text-lg ' >About</Link>
                     </Navbar.Link>
                     <Navbar.Link active={path==='/projects'} as={'div'}>
-                        <Link to='/projects'>Projects</Link>
+                        <Link to='/projects' className='text-lg ' >Projects</Link>
                     </Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>

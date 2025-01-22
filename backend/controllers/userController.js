@@ -1,7 +1,7 @@
 //user controllers
 const User = require('../models/usermodel')
 const bcrypt = require('bcrypt')
- const signin= async(req, res) => {
+ const signup= async(req, res) => {
     const {username,email,password} = req.body
     console.log(username,email,password)
     if (!username || !email || !password) {
@@ -23,7 +23,7 @@ if(userExit){
     }
 
 }
-const signup= async(req, res) => {
+const signin= async(req, res) => {
     const {email,password} = req.body
     if (!email || !password) {
         return res.status(400).json({ message: 'All fields are required' })
