@@ -37,6 +37,7 @@ export default function Header() {
                     </Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>
+           
         </div>
     )
 }
