@@ -1,6 +1,7 @@
 //user controllers
 const User = require('../models/usermodel')
 const bcrypt = require('bcrypt')
+const { generateToken } = require("../middleware/Tokengenarate");
 const signup = async (req, res) => {
     const { username, email, password } = req.body
     console.log(username, email, password)
@@ -48,6 +49,8 @@ const signin = async (req, res) => {
         if (!passwordCheck) {
             return res.status(400).json({ message: 'Invalid email or password' })
         }
+       const token = generateToken(userExit);
+console.log(token)
         return res.status(200).json({ message: 'Login successful' })
     } catch (err) {
         console.log("error at sigup ", err)
@@ -55,4 +58,8 @@ const signin = async (req, res) => {
 
     }
 }
+ 
+
+
+
 module.exports = { signin, signup } 

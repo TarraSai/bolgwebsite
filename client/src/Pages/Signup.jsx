@@ -4,6 +4,7 @@ import{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../ReactToasty';
 import { ToastContainer } from 'react-toastify';
+import Autho from './Autho';
 
 export default function Signup() {
   const [formData, setFormData] = useState({username: '', email: '', password: '' })
@@ -60,7 +61,7 @@ export default function Signup() {
   Sign Up
 </Button>
 
-
+<Autho/>
   </form>
   <div className='text-md pt-5 '>
     <span>Have a account ? </span>
