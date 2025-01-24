@@ -51,7 +51,7 @@ const signin = async (req, res) => {
         }
        const token = generateToken(userExit);
 console.log(token)
-        return res.status(200).json({ message: 'Login successful' })
+        return res.status(200).json({ message: 'Login successful', token: token })
     } catch (err) {
         console.log("error at sigup ", err)
         return res.status(400).json({ message: 'Something went wrong at the server' })
@@ -59,7 +59,33 @@ console.log(token)
     }
 }
  
+const googleAuth = async (req, res) => {
+    const {email,displayName,photoURL} = req.body;
+    try {
+      const user = await User.findOne({ email: email });    
+      if (user) {
+        const token = generateToken(user);
+        return res
+          .status(200)
+          .json({ message: "Login successful", token: token });
+      } else {
 
+        const hashpassword= await bcrypt.hash("mypasswordispassword", 10);
+        const newUser = new User({
+          username: displayName.toLowerCase().replace(/ /g, "")+Math.floor(Math.random()*1000),
+          email,
+          password: hashpassword,
+          profilePic: photoURL,
+        });
+        await newUser.save();
+        const token = generateToken(newUser);
+        return res
+          .status(200)
+          .json({ message: "Login successful", token: token });
+      }
+}catch(error){
+        console.log(error)
+      }
+    }
 
-
-module.exports = { signin, signup } 
+module.exports = { signin, signup, googleAuth }; 

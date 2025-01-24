@@ -1,7 +1,8 @@
 import { Button, Navbar, TextInput } from 'flowbite-react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaMoon } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
+
+import { FaSearch,FaBlog  } from "react-icons/fa";
 export default function Header() {
     const path = useLocation().pathname
   
@@ -9,7 +10,7 @@ export default function Header() {
         <div>
             <Navbar className='border-b-4 font-semibold text-sm'>
                 <Link to='/' className='whilespace-nowrap  font-semibold text-sm sm:text-2xl'>
-                    <span className='px-2 py-1 bg-gradient-to-r from-purple-500  to-blue-500 rounded-md'>Sai&#39;s</span>Blog
+                    <span className='px-2 py-1 '><FaBlog style={{color:"blue"}}/> </span>Blog
                 </Link>
                 <TextInput placeholder='search...' rightIcon={FaSearch} className=' hidden lg:inline'
                 />

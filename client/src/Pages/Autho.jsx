@@ -1,10 +1,26 @@
 // google authentication
 import {Button} from 'flowbite-react'
-import { FcGoogle } from "react-icons/fc";
+import { AiFillGoogleCircle } from "react-icons/ai";
+import axios from 'axios'
+import {GoogleAuthProvider,signInWithPopup,getAuth} from 'firebase/auth'
+import {app} from '../firebase'
 function Autho() {
+    const auth=getAuth(app)
+    const handlegoogle= async()=>{
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({prompt:'select_account'})
+        try{
+            const response=await signInWithPopup(auth,provider)
+            const userdata=await axios.post('http://localhost:3000/blog/api/googleAuth',response.user)
+
+
+        }catch(error){
+            console.log(error)
+        }
+    }
   return (
     
-        <Button type='button' className='bg-gradient-to-r from-orange-400 to-pink-500 text-white ' outline><span ><FcGoogle className='w-6 h-6 mx-3 '/></span>continue with Google</Button>
+        <Button type='button' onClick={handlegoogle} className='bg-gradient-to-r from-orange-400 to-pink-500 text-white ' outline><span ><AiFillGoogleCircle className='w-6 h-6 mx-2 '/></span>continue with Google</Button>
     
   )
 }
