@@ -1,10 +1,22 @@
 import { Button, Navbar, TextInput } from 'flowbite-react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaMoon } from "react-icons/fa";
+import { useState, useEffect } from 'react';
 
 import { FaSearch,FaBlog  } from "react-icons/fa";
+import IconButton from './IconButton';
 export default function Header() {
     const path = useLocation().pathname
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
+      }
+    }, []);
+    
+
   
     return (
         <div>
@@ -21,9 +33,11 @@ export default function Header() {
                     <Button className='hidden sm:inline ' gradientDuoTone='purpleToBlue' color='gray' pill>
                         <FaMoon  />
                     </Button>
-                    <Link to='/signin'>
-                        <Button gradientDuoTone='purpleToBlue' outline>sign In</Button>
-                    </Link>
+                    {!isLoggedIn ? (
+          <Link to='/signin'>
+            <Button gradientDuoTone='purpleToBlue' outline>Sign In</Button>
+          </Link>
+        ):<IconButton />}
                     <Navbar.Toggle />
                 </div>
                 {/* increase text size */}

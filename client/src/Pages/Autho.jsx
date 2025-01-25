@@ -4,6 +4,7 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import axios from 'axios'
 import {GoogleAuthProvider,signInWithPopup,getAuth} from 'firebase/auth'
 import {app} from '../firebase'
+import { showSuccessToast } from '../ReactToasty';
 function Autho() {
     const auth=getAuth(app)
     const handlegoogle= async()=>{
@@ -12,6 +13,9 @@ function Autho() {
         try{
             const response=await signInWithPopup(auth,provider)
             const userdata=await axios.post('http://localhost:3000/blog/api/googleAuth',response.user)
+
+            localStorage.setItem('token',userdata.data.token)
+            showSuccessToast('User log-in successfully!');
 
 
         }catch(error){

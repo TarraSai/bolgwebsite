@@ -19,10 +19,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    profilePic:{
-        type:String,
-        default:'https://res.cloudinary.com/dxkufsejm/image/upload/v1633663664/blank-profile-picture-973460_640_ewvq6s.png'
-    }
+    profilePic: {
+      type: String,
+      default:"https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png",
+    },
   },
   { timestamps: true }
 );

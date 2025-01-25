@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
     _id: user._id,
     email: user.email,
     username: user.username,
+    profilePic: user.profilePic,
   };
   return jwt.sign(payload, process.env.SERCET_KEY, {
     expiresIn: "2d",
