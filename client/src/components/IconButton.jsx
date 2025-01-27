@@ -1,24 +1,20 @@
 
 import { Avatar, Dropdown } from 'flowbite-react';
-import {jwtDecode} from 'jwt-decode';
+import { useApi } from '../context/ContextApi';
 import { Link } from 'react-router-dom';
 
 function IconButton() {
-  const token = localStorage.getItem('token');
-  const decodedToken = jwtDecode(token);
-  console.log(decodedToken);
-
-  const imageSrc = decodedToken.profilePic;
-  const altText = decodedToken.username;
-  const email = decodedToken.email;
-
+  const { userData } = useApi();
+console.log(userData)
   return (
     <Dropdown arrowIcon={false} inline 
-    label={<Avatar alt={altText} img={imageSrc} rounded/>
+    label={<Avatar alt={
+      userData.username} img={userData.profilePic} rounded/>
     } className='inline-block'>
 <Dropdown.Header>
-    <span className='block text-sm'>@{altText}</span>
-    <span className='block text-sm font-m truncate'>{email}</span>
+    <span className='block text-sm'>@{userData.
+username}</span>
+    <span className='block text-sm font-m truncate'>{userData.email}</span>
 </Dropdown.Header>
 <Link to ='/dashboard?tab=profile'>
 <Dropdown.Item>Profile</Dropdown.Item>

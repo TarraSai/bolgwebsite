@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext,useContext,useState } from "react"
 import axios from "axios"
-
+import { jwtDecode } from "jwt-decode"
 const ApiContext = createContext()
  export function ContextApi({children}) {
     const baseUrl="http://localhost:5000/blog/api"
@@ -31,8 +31,11 @@ const ApiContext = createContext()
         setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
         document.documentElement.classList.toggle("dark");
       };
+
+      const token=localStorage.getItem('token')
+       const userData = jwtDecode(token);
   return (
-    <ApiContext.Provider value={{  apiRequest, theme, toggleTheme  }}>
+    <ApiContext.Provider value={{  apiRequest, theme, toggleTheme ,userData }}>
     {children}
   </ApiContext.Provider>
   )
