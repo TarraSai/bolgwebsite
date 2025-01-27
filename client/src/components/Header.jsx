@@ -2,20 +2,21 @@ import { Button, Navbar, TextInput } from 'flowbite-react'
 import { Link, useLocation } from 'react-router-dom'
 import { FaMoon } from "react-icons/fa";
 import { useState, useEffect } from 'react';
-
+import { useApi } from "../context/ContextApi";
 import { FaSearch,FaBlog  } from "react-icons/fa";
+import { IoSunny } from "react-icons/io5";
 import IconButton from './IconButton';
 export default function Header() {
     const path = useLocation().pathname
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const { toggleTheme, theme} = useApi();
     useEffect(() => {
       const token = localStorage.getItem('token');
       if (token) {
         setIsLoggedIn(true);
       }
     }, []);
-    
+   
 
   
     return (
@@ -26,12 +27,12 @@ export default function Header() {
                 </Link>
                 <TextInput placeholder='search...' rightIcon={FaSearch} className=' hidden lg:inline'
                 />
-                <Button className='lg:hidden' gradientDuoTone='purpleToBlue' outline color='gray' pill>
+                <Button className='lg:hidden' gradientDuoTone='purpleToBlue' outline color='gray' pill >
                     <FaSearch />
                 </Button>
                 <div className='flex gap-2 md:order-2'>
-                    <Button className='hidden sm:inline ' gradientDuoTone='purpleToBlue' color='gray' pill>
-                        <FaMoon  />
+                    <Button className='hidden sm:inline dark:text-yellow-400 text-black ' gradientDuoTone='purpleToBlue' color='gray' pill onClick={toggleTheme}>
+                    {   theme==='dark'?<IoSunny className=" w-5 h-5" />: <FaMoon   />}
                     </Button>
                     {!isLoggedIn ? (
           <Link to='/signin'>

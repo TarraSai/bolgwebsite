@@ -1,12 +1,14 @@
 import { TextInput ,Button} from 'flowbite-react';
-import axios from 'axios';
+
 import{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { showSuccessToast, showErrorToast } from '../ReactToasty';
 import { ToastContainer } from 'react-toastify';
 import Autho from './Autho';
+import { useApi } from "../context/ContextApi"; 
 
 export default function Signup() {
+  const { apiRequest } = useApi(); 
   const [formData, setFormData] = useState({username: '', email: '', password: '' })
    const handleChange=(e)=>{
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))
@@ -16,7 +18,7 @@ export default function Signup() {
      e.preventDefault()
      console.log(formData);
       try{
-        const response=await axios.post('http://localhost:3000/blog/api/register',formData)
+        const response=await apiRequest("/login", "POST", formData);
         console.log(response)
         showSuccessToast('User created successfully!');
         setFormData({ username: '', email: '', password: '' });
