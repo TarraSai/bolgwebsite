@@ -1,21 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
-  authDomain: "bolgwebsite-5278a.firebaseapp.com",
-  projectId: "bolgwebsite-5278a",
-  storageBucket: "bolgwebsite-5278a.firebasestorage.app",
-  messagingSenderId: "968822611388",
-  appId: "1:968822611388:web:5da00df3a9b2c8edb15fb9",
-  measurementId: "G-8FQ5Q4K8DY",
+  authDomain: "blog-website-dd8e0.firebaseapp.com",
+  projectId: "blog-website-dd8e0",
+  storageBucket: "blog-website-dd8e0.firebasestorage.app",
+  messagingSenderId: "617232000565",
+  appId: "1:617232000565:web:21cce0c42eb0dba480337c",
 };
 
 // Initialize Firebase
  export const app = initializeApp(firebaseConfig);
-
